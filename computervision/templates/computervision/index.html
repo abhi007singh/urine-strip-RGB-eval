@@ -1,0 +1,23 @@
+<form enctype="multipart/form-data" method="post">
+{% csrf_token %}
+	<label for="username">Enter Username</label>
+	<input type="text" name="username" id="username" />
+	<label for="image">Select an urine strip image:</label>
+	<input type="file" name="image" id="image" />
+	<button type="submit">Upload</button>
+</form>
+{% if result %}
+	<h3>Urine-strip Image Successfully Uploaded</h3>
+	<table>
+		<tr>
+			<td>Param</td>
+			<td>[R,G,B]</td>
+		</tr>
+		{% for key, values in result.items %}
+		<tr>
+			<td>{{ key }}</td>
+			<td>{{ values }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+{% endif %}
